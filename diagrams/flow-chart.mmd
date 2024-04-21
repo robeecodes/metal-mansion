@@ -1,0 +1,47 @@
+---
+title: Flow Chart
+---
+
+flowchart TD
+    ShowMainMenu[[Show Main Menu]]
+    ClickPlay{Click Play?}
+    ClickExit{Click Exit?}
+    ClickConfig{Click Config?}
+    GoBackToMain{Go Back to Main?}
+
+
+    ShowCharacterSelect[[ShowCharacterSelect]]
+    SelectedCharacter{Selected Character?}
+    PlayGame[[Play Game]]
+    Pause{Pause Game?}
+    ShowPauseMenu[[Show Pause Menu]]
+    Unpause{Unpause?}
+    IsPlayerAlive?{Is Player Alive?}
+    GoBackToPause{Go Back?}
+    GoBackToPause{Go Back to Pause?}
+
+    ShowConfigMenu[[Show Config Menu]]
+
+    Start --> ShowMainMenu
+    ShowMainMenu --> ClickPlay
+    ClickPlay -- Yes --> ShowCharacterSelect
+    ShowCharacterSelect --> GoBackToMain
+    GoBackToMain -- Yes --> ShowMainMenu
+    ShowMainMenu --> ClickExit
+    ClickExit -- Yes --> Stop
+
+    ShowMainMenu --> ClickConfig
+    ClickConfig -- Yes --> ShowConfigMenu
+    ShowConfigMenu --> GoBackToMain
+
+    ShowCharacterSelect --> SelectedCharacter
+    SelectedCharacter -- Yes --> PlayGame
+
+    PlayGame --> Pause
+    Pause -- Yes --> ShowPauseMenu
+    ShowPauseMenu --> ClickExit
+    ShowPauseMenu --> ClickConfig
+    ShowConfigMenu --> GoBackToPause -- Yes --> ShowPauseMenu
+    ShowPauseMenu --> Unpause -- Yes --> PlayGame
+    PlayGame --> IsPlayerAlive? -- Yes --> PlayGame
+    IsPlayerAlive? -- No --> Stop

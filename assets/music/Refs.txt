@@ -1,0 +1,11 @@
+8-bit Game	https://pixabay.com/music/video-games-8-bit-game-158815/
+boss	https://pixabay.com/music/video-games-to-the-death-159171/
+cartoon-jump	https://pixabay.com/sound-effects/cartoon-jump-6462/
+digital-dreamscape	https://pixabay.com/music/video-games-digital-dreamscape-193900/
+footstep	https://pixabay.com/sound-effects/footstep-1-83098/
+oof	https://pixabay.com/sound-effects/oof-sound-effect-147492/
+pickup	https://pixabay.com/sound-effects/effect-notify-84408/
+shoot	https://pixabay.com/sound-effects/shoot-1-81135/
+teleport	https://pixabay.com/sound-effects/game-teleport-90735/
+videogame-death-sound 	https://pixabay.com/sound-effects/videogame-death-sound-43894/
+you-win	https://pixabay.com/sound-effects/you-win-sequence-2-183949/
