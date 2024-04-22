@@ -1,8 +1,8 @@
-const SCENES = [MainMenu, KaoriLevel, BossLevel, GameOver];
+const SCENES = [MainMenu, KaoriLevel, BossLevel, GameOver, RenLevel];
 
-let cnv, currScene, prevScene, tilesheet, animatedSheet, tileSize, animationAtlas;
+let cnv, currScene, prevScene, tilesheet, animatedSheet, iceImg, tileSize, animationAtlas;
 
-let mainMenuImg;
+let mainMenuImg, manualImg, chooseCharacterImg;
 
 let gameOverTimeout;
 
@@ -14,9 +14,9 @@ let bgm;
 
 let bossBGM, levelBGM, menuBGM, winBGM;
 
-let deathSFX, hurtSFX, jumpSFX, pickupSFX, shootSFX, stepSFX, teleportSFX;
+let deathSFX, fireSFX, hurtSFX, jumpSFX, pickupSFX, shootSFX, stepSFX, teleportSFX;
 
-let wall, ground, tempWall, platforms, danger;
+let wall, ground, tempWall, platforms, danger, ice;
 
 let conveyorL, conveyorR;
 
@@ -24,9 +24,12 @@ function preload() {
     // Load the sprites tilesheets
     tilesheet = loadImage('./assets/maps/tilesheets/tiles.png');
     animatedSheet = loadImage('./assets/maps/tilesheets/animated-objects.png');
+    iceImg = loadImage('./assets/maps/tilesheets/ice.png');
 
     // Load Menu Images
     mainMenuImg = loadImage('./assets/menus/main.png');
+    manualImg = loadImage('./assets/menus/manual.png');
+    chooseCharacterImg = loadImage('./assets/menus/choose-character.png');
 
     // Preload animations here
     animationAtlas = buildAnimationAtlas();
@@ -46,6 +49,7 @@ function preload() {
 
     // Load sfx
     deathSFX = loadSound('./assets/music/videogame-death-sound');
+    fireSFX = loadSound('./assets/music/fireball')
     hurtSFX = loadSound('./assets/music/oof');
     hurtSFX.setVolume(0.25);
     jumpSFX = loadSound('./assets/music/cartoon-jump');
@@ -129,6 +133,16 @@ function setup() {
     conveyorR.tile = 'R';
     conveyorR.layer = 3;
 
+    ice = new Group();
+    ice.collider = 'static';
+    ice.spriteSheet = iceImg;
+    ice.addAni({width: tileSize, height: tileSize, row: 0, col: 0});
+    ice.tile = 'i';
+    ice.height = 48;
+    ice.anis.offset.y = ice.height / 2 - 16;
+    ice.layer = 3;
+    ice.overlaps(allSprites);
+
     currScene = new MainMenu();
 }
 
@@ -205,6 +219,7 @@ function manageProjectiles() {
 }
 
 function buildAnimationAtlas() {
+    // Create all the animations needed from sprite sheets
     return {
         kaori: {
             idle: loadAnimation('./assets/sprites/kaori/kaori-idle.png', { frameSize: [64, 64], frames: 4 }),
@@ -220,6 +235,21 @@ function buildAnimationAtlas() {
             superRunShoot: loadAnimation('./assets/sprites/kaori/kaori-special-run-shoot.png', { frameSize: [64, 64], frames: 2 }),
             superJump: loadAnimation('./assets/sprites/kaori/kaori-special-jump.png', { frameSize: [64, 64], frames: 2 }),
             superJumpShoot: loadAnimation('./assets/sprites/kaori/kaori-special-jump-shoot.png', { frameSize: [64, 64], frames: 2 }),
+        },
+        ren: {
+            idle: loadAnimation('./assets/sprites/ren/ren-idle.png', { frameSize: [64, 64], frames: 4 }),
+            idleShoot: loadAnimation('./assets/sprites/ren/ren-idle-shoot.png', { frameSize: [64, 64], frames: 2 }),
+            run: loadAnimation('./assets/sprites/ren/ren-run.png', { frameSize: [64, 64], frames: 2 }),
+            runShoot: loadAnimation('./assets/sprites/ren/ren-run-shoot.png', { frameSize: [64, 64], frames: 2 }),
+            jump: loadAnimation('./assets/sprites/ren/ren-jump.png', { frameSize: [64, 64], frames: 2 }),
+            jumpShoot: loadAnimation('./assets/sprites/ren/ren-jump-shoot.png', { frameSize: [64, 64], frames: 2 }),
+            die: loadAnimation('./assets/sprites/ren/ren-death.png', { frameSize: [64, 64], frames: 2 }),
+            superIdle: loadAnimation('./assets/sprites/ren/ren-special-idle.png', { frameSize: [64, 64], frames: 4 }),
+            superIdleShoot: loadAnimation('./assets/sprites/ren/ren-special-idle-shoot.png', { frameSize: [64, 64], frames: 2 }),
+            superRun: loadAnimation('./assets/sprites/ren/ren-special-run.png', { frameSize: [64, 64], frames: 2 }),
+            superRunShoot: loadAnimation('./assets/sprites/ren/ren-special-run-shoot.png', { frameSize: [64, 64], frames: 2 }),
+            superJump: loadAnimation('./assets/sprites/ren/ren-special-jump.png', { frameSize: [64, 64], frames: 2 }),
+            superJumpShoot: loadAnimation('./assets/sprites/ren/ren-special-jump-shoot.png', { frameSize: [64, 64], frames: 2 }),
         },
         UFO: {
             idle: loadAnimation('./assets/sprites/enemies/ufo.png', {frameSize: [64, 64], frames: 6 })

@@ -49,6 +49,14 @@ class Projectile {
             this.sprite.remove();
         }
 
+        if (this instanceof Fireball) {
+            ice.forEach(i => {
+                if (this.sprite.overlaps(i)) {
+                    i.remove();
+                }
+            })
+        }
+
         if (this.sprite.removed) {
             Projectile.projectiles = Projectile.projectiles.filter((projectile) => projectile !== this);
         }

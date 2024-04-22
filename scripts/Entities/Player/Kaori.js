@@ -27,6 +27,9 @@ class Kaori extends Player {
         this.sprite.animations.idleShoot.frameDelay = 4;
         this.sprite.animations.jumpShoot.frameDelay = 4;
         this.sprite.animations.die.frameDelay = 60;
+        this.sprite.animations.superJump.noLoop();
+        this.sprite.animations.superIdleShoot.frameDelay = 4;
+        this.sprite.animations.superJumpShoot.frameDelay = 4;
 
         this.sprite.changeAni('idle');
 

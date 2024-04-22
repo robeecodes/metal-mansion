@@ -44,11 +44,10 @@ class KaoriLevel {
         bgm = levelBGM;
 
         bgm.loop();
-
-        noCursor();
     }
 
     draw() {
+        noCursor();
         background(color(103, 110, 158));
 
         this.drawCamera();
@@ -77,7 +76,7 @@ class KaoriLevel {
                 }
 
                 if (enemies.conveyorUFOs.length < 1 && enemies.conveyorMissiles.length < 1 && enemies.conveyorCannons.length < 1 && !this.#clearedDangerRoom) {
-                    tempWall.remove();
+                    tempWall.removeAll();
                     this.#clearedDangerRoom = true;
                 }
 

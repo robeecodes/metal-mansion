@@ -45,7 +45,7 @@ class Cannon extends Enemy {
             case "missile":
                 return new Missile(this.sprite.x, this.sprite.y, 100, .75);
             case "tank":
-                return new Tank(this.sprite.x, this.sprite.y, 100, .5);
+                return new Tank(this.sprite.x, this.sprite.y, 100, .75);
         }
     }
 }

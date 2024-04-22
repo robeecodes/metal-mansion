@@ -2,6 +2,7 @@
 boss	https://pixabay.com/music/video-games-to-the-death-159171/
 cartoon-jump	https://pixabay.com/sound-effects/cartoon-jump-6462/
 digital-dreamscape	https://pixabay.com/music/video-games-digital-dreamscape-193900/
+fireball	https://pixabay.com/sound-effects/fireball-whoosh-1-179125/
 footstep	https://pixabay.com/sound-effects/footstep-1-83098/
 oof	https://pixabay.com/sound-effects/oof-sound-effect-147492/
 pickup	https://pixabay.com/sound-effects/effect-notify-84408/

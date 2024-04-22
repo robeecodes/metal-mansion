@@ -187,7 +187,33 @@ class Player extends Character {
             }
         });
 
-        // If player touches an enemy, take damage and become invincible for two seconds
+        // Player slips on ice
+        ice.forEach(i => {
+            if (customOverlap(this.sprite, i)) {
+                this.sprite.friction = 0;
+                let direction = this.sprite.mirror.x ? -1 : 1;
+
+                if (direction === -1) {
+                    this.sprite.bearing = -180;
+                } else {
+                    this.sprite.bearing = 0;
+                }
+
+                this.sprite.applyForce(20);
+
+                if (!this.invincible) {
+                    hurtSFX.play();
+                    this.health.takeDamage(6);
+                    if (this.health.isAlive()) {
+                        this.iFrames();
+                    }
+                }
+            } else {
+                this.sprite.friction = 0.5;
+            }
+        })
+
+        // If player touches an enemy, take damage and become invincible for 1.5 seconds
         for (const enemyGroup of Object.values(enemies)) {
             enemyGroup.forEach((enemy) => {
                 if (customOverlap(this.sprite, enemy.sprite)) {
@@ -205,14 +231,15 @@ class Player extends Character {
         }
     }
 
-    // Makes character invincible for 2 seconds after being hit
+    // Makes character invincible for 1.5 seconds after being hit
     iFrames() {
         this.invincible = true;
+        // Visually indicate invincibility
         this.sprite.opacity = 0.5;
             setTimeout(() => {
                 this.invincible = false;
                 this.sprite.opacity = 1;
-            }, 2000);
+            }, 1500);
     }
 
     becomeSuper() {

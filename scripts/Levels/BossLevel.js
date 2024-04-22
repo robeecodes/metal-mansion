@@ -14,6 +14,11 @@ class BossLevel {
             player.energy = playerInfo.energy;
         }
 
+        if (playerInfo.name === 'Ren') {
+            player = new Ren(11 * tileSize, 8 * tileSize);
+            player.energy = playerInfo.energy;
+        }
+
         if (player.energy > 0) {
             player.becomeSuper();
         }
@@ -25,11 +30,11 @@ class BossLevel {
         bgm = bossBGM;
 
         bgm.loop();
-
-        noCursor();
     }
 
     draw() {
+        noCursor();
+
         background(color(103, 110, 158));
 
         this.drawCamera();
@@ -44,7 +49,6 @@ class BossLevel {
             if (enemies.mainBoss.length < 1) {
                 player.sprite.vel.x = 0;
                 player.sprite.vel.y = 1.5;
-                player.invincible = true;
                 bgm.stop();
                 if (!winBGM.isPlaying()) {
                     winBGM.play();
