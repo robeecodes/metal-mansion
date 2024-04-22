@@ -26,6 +26,9 @@ class RenLevel {
         this.exit.addAnimation('idle', animationAtlas.exitDoor.idle);
         this.exit.layer = 1;
 
+        // HurtSFX pitch raised
+        hurtSFX.rate(1.35);
+
         bgm = levelBGM;
 
         bgm.loop();
