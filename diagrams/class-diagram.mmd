@@ -34,24 +34,12 @@ classDiagram
         display()
     }
 
-    class Menu {
-        buttons: List<Button>
-        display()
-        handleInput()
-    }
 
     class CharacterSelectMenu {
         sniperButton: Button
         mageButton: Button
         display()
         selectCharacter(character: Character)
-    }
-
-    class PauseMenu {
-        resumeButton: Button
-        exitButton: Button
-        display()
-        handleInput()
     }
 
     class Character {
@@ -133,9 +121,7 @@ classDiagram
     Gameplay "1" --> "1" Character
     Gameplay "1" --> "0..*" Enemy
     TitleScreen "1" --> "1..*" Button
-    Menu "1" --> "1..*" Button
     CharacterSelectMenu "1" --> "1..*" Button
-    PauseMenu "1" --> "1..*" Button
     Character "1" --> "1" Health
     Enemy "1..*" --> "1" Health
     Character <|-- Sniper
