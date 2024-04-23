@@ -48,6 +48,9 @@ class MainMenu {
     drawMainButtons() {
         background(mainMenuImg);
 
+        this.back.opacity = 0;
+        this.back.collider = 'none';
+
         this.start.opacity = 1;
         this.start.collider = 'static';
         this.manual.opacity = 1;
@@ -79,6 +82,9 @@ class MainMenu {
 
     drawManual() {
         background(manualImg);
+
+        this.back.opacity = 1;
+        this.back.collider = 'static';
 
         this.start.opacity = 0;
         this.start.collider = 'none';

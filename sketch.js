@@ -152,8 +152,10 @@ function draw() {
 
 function windowResized() {
 // Change screen size if window size changes
-    cnv.buildGameCanvas();
-    camera.zoom = cnv.scaleFactor;
+    if (cnv) {
+        cnv.buildGameCanvas();
+        camera.zoom = cnv.scaleFactor;
+    }
 }
 
 // Delete all tiles currently being displayed
