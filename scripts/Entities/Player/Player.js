@@ -1,7 +1,7 @@
 // Base abstract player class, can be used to create multiple different player characters
 
 class Player extends Character {
-    // https://www.sohamkamani.com/javascript/enums/
+    // Creating JavaScript Enums (Kamani, 2023)
     // Check if the player can jump
     #JUMP_STATE = Object.freeze({
         GROUNDED: Symbol('grounded'),
@@ -49,7 +49,7 @@ class Player extends Character {
 
     movementAnimations() {
         // Animations for player movement - detect when running, jumping and shooting
-        if (this.sprite.ani.name !== 'idleShoot' && this.sprite.ani.name !== 'runShoot' && this.sprite.ani.name !== 'jumpShoot') {
+        if (this.sprite.ani.name !== 'idleShoot' && this.sprite.ani.name !== 'runShoot' && this.sprite.ani.name !== 'jumpShoot' && this.sprite.ani.name !== 'superIdleShoot' && this.sprite.ani.name !== 'superRunShoot' && this.sprite.ani.name !== 'superJumpShoot' ) {
             if (kb.pressing('left') && this.jumpState === this.#JUMP_STATE.GROUNDED) {
                 if (this._superPowered) {
                     this.sprite.changeAni('superRun');
@@ -246,3 +246,6 @@ class Player extends Character {
         throw new Error("becomeSuper() has not yet been created");
     }
 }
+
+// References
+// Kamani, S (2023) Using Enums In Javascript. [online] Available from: https://www.sohamkamani.com/javascript/enums/. [Accessed 23 April 2024]

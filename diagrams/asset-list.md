@@ -20,12 +20,11 @@
 - [x] Special Take Damage
 - [x] Special Death
 #### SFX
-- [ ] Footsteps
-- [ ] Jump Spring
-- [ ] Special Activation
-- [ ] Shoot
-- [ ] Take Damage
-- [ ] Death
+- [x] Footsteps
+- [x] Jump Spring
+- [x] Shoot
+- [x] Take Damage
+- [x] Death
 
 ### Ren
 #### Sprites
@@ -44,74 +43,49 @@
 - [x] Special Jump
 - [x] Special Jump Cast Fire
 #### SFX
-- [ ] Footsteps
-- [ ] Jump Spring
-- [ ] Special Activation
-- [ ] Cast Fire
-- [ ] Take Damage
-- [ ] Death
+- [x] Footsteps
+- [x] Jump Spring
+- [x] Cast Fire
+- [x] Take Damage
+- [x] Death
 
 ## Enemies
 
 ### Basic Enemy
 #### Sprites
 - [x] Sprite
-#### SFX
-- [ ] Movement
-- [ ] Take Damage
-- [ ] Death
 
 ### Homing Enemy
 #### Sprites
 - [x] Sprite
-#### SFX
-- [ ] Fly
-- [ ] Take Damage
-- [ ] Death
 
 ### Tank Enemy
 #### Sprites
 - [x] Sprite
-#### SFX
-- [ ] Move
-- [ ] Take Damage
-- [ ] Death
 
-### Basic Enemy Spawner
+### Cannon
 #### Sprites
-- [ ] Idle
-- [ ] Spawn
-#### SFX
-- [ ] Spawn
+- [x] Idle
+- [x] Spawn
 
-### Homing Enemy Spawner
-#### Sprites
-- [ ] Idle
-- [ ] Spawn
-#### SFX
-- [ ] Spawn
 
 ## Menus
-### Sprites
-- [ ] Button
 ### SFX
-- [ ] BGM
-- [ ] Press Button
+- [x] BGM
 
 ## Maps
 ### Collectibles
-- [ ] Energy
+- [x] Energy
 ### Tiles
-- [ ] Platforms
-- [ ] Background
-- [ ] Exit Door
-- [ ] Walls
+- [x] Platforms
+- [x] Background
+- [x] Exit Door
+- [x] Walls
 ### Visuals
-- [ ] Kaori Level Map
-- [ ] Ren Level Map
-- [ ] Boss Battle Map
+- [x] Kaori Level Map
+- [x] Ren Level Map
+- [x] Boss Battle Map
 ### SFX
-- [ ] BGM Standard
-- [ ] Boss BGM
-- [ ] Special BGM
-- [ ] Teleport
+- [x] BGM Standard
+- [x] Boss BGM
+- [x] Teleport

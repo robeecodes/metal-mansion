@@ -4,6 +4,7 @@ class Ren extends Player {
     constructor(x, y) {
         super(x, y);
 
+        // Configure Ren animations
         this.sprite.addAnimation('idle', animationAtlas.ren.idle);
         this.sprite.addAnimation('idleShoot', animationAtlas.ren.idleShoot);
         this.sprite.addAnimation('run', animationAtlas.ren.run);

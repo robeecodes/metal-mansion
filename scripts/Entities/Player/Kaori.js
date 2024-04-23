@@ -4,6 +4,7 @@ class Kaori extends Player {
     constructor(x, y) {
         super(x, y);
 
+        // Configure Kaori animations
         this.sprite.addAnimation('idle', animationAtlas.kaori.idle);
         this.sprite.addAnimation('idleShoot', animationAtlas.kaori.idleShoot);
         this.sprite.addAnimation('run', animationAtlas.kaori.run);

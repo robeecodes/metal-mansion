@@ -1,3 +1,5 @@
+// Stores data about the current game canvas to assist with resizing and camera zoom
+
 class GameCanvas {
     constructor() {
         this.aspectRatio = 4 / 3;

@@ -34,6 +34,7 @@ class KaoriLevel {
         this.#clearedTrap = false;
         this.#clearedDangerRoom = false;
 
+        // Add the exit door
         this.exit = new Sprite(23.5 * tileSize, 26.5 * tileSize, 'n');
         this.exit.addAnimation('idle', animationAtlas.exitDoor.idle);
         this.exit.layer = 1;
@@ -75,6 +76,7 @@ class KaoriLevel {
                     }, 1000);
                 }
 
+                // If all conveyor enemies are defeated, player can leave the room
                 if (enemies.conveyorUFOs.length < 1 && enemies.conveyorMissiles.length < 1 && enemies.conveyorCannons.length < 1 && !this.#clearedDangerRoom) {
                     tempWall.removeAll();
                     this.#clearedDangerRoom = true;
@@ -85,6 +87,7 @@ class KaoriLevel {
                     player.sprite.vel.x = 0;
                     player.sprite.vel.y = 1.5;
                     playerInfo.energy = player.energy;
+                    clearEnemies();
                     bgm.stop();
                     if (!winBGM.isPlaying()) {
                         winBGM.play();
@@ -212,6 +215,7 @@ class KaoriLevel {
         }
     }
 
+    // Spawn enemies from the cannons on the conveyor belts based on type
     conveyorSpawns() {
         if (enemies.conveyorUFOs.length < 1) {
             enemies.conveyorCannons.forEach(cannon => {

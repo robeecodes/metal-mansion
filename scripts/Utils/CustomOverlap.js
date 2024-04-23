@@ -1,4 +1,4 @@
-// Detect if two sprites are overlapping - alternative to p5.play overlapping() function
+// Detect if two sprites are overlapping
 function customOverlap(obj, other) {
     let d = dist(obj.x, obj.y, other.x, other.y);
 

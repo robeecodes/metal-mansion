@@ -41,10 +41,10 @@ function renderHP(hpBar, x, y, entity) {
     hpBar[1].xOff = (hpBar[0].width / 2) - (hpBar[1].width / 2);
 
     // Colour hp bar depending on amount of damage taken
-    if (hpBar[1].width <= hpBar[0].width / 2) {
-        hpBar[1].color = 'yellow';
-    } else if (hpBar[1].width <= hpBar[0].width / 4) {
+    if (hpBar[1].width <= hpBar[0].width / 4) {
         hpBar[1].color = 'red';
+    } else if (hpBar[1].width <= hpBar[0].width / 2) {
+        hpBar[1].color = 'yellow';
     } else {
         hpBar[1].color = 'green';
     }

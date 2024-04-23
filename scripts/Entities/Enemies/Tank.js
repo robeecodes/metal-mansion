@@ -1,6 +1,7 @@
 // Tank enemy which moves from left to right and shoots player
 
 class Tank extends Enemy {
+    // Check if enemy is preparing to shoot
     #preparingShot;
 
     constructor(x, y, health, scale) {

@@ -1,4 +1,5 @@
 class MainMenu {
+    // Current state of the menu
     #state;
 
     constructor() {
@@ -14,12 +15,15 @@ class MainMenu {
         this.buttons.color = 'DeepSkyBlue';
         this.buttons.stroke = 'black';
 
+        // Press this button to start the game
         this.start = new this.buttons.Sprite(tileSize * 5 * cnv.scaleFactor, tileSize * 7 * cnv.scaleFactor, 100 * cnv.scaleFactor, 50 * cnv.scaleFactor, 's');
         this.start.text = 'Start';
 
+        // Press this button to open the manual
         this.manual = new this.buttons.Sprite(tileSize * 10 * cnv.scaleFactor, tileSize * 7 * cnv.scaleFactor, 100 * cnv.scaleFactor, 50 * cnv.scaleFactor, 's');
         this.manual.text = 'How to Play';
 
+        // Press this button to return to menu from manual
         this.back = new this.buttons.Sprite(tileSize * 2 * cnv.scaleFactor, tileSize * 10.5 * cnv.scaleFactor, 100 * cnv.scaleFactor, 40 * cnv.scaleFactor, 's');
         this.back.text = 'Back';
 
@@ -28,6 +32,7 @@ class MainMenu {
     draw() {
         mouse.cursor = 'default';
 
+        // Show the menu or manual depending on state
         switch (this.#state) {
             case 'main':
                 this.drawMainButtons();
@@ -37,6 +42,7 @@ class MainMenu {
                 break;
         }
 
+        // Pointer cursor on button hover
         if (this.buttons.mouse.hovering()) {
             mouse.cursor = 'pointer';
         } else {
@@ -48,9 +54,12 @@ class MainMenu {
     drawMainButtons() {
         background(mainMenuImg);
 
+        // Hide back button
         this.back.opacity = 0;
         this.back.collider = 'none';
 
+
+        // Show start and manual buttons
         this.start.opacity = 1;
         this.start.collider = 'static';
         this.manual.opacity = 1;
@@ -63,6 +72,7 @@ class MainMenu {
         this.start.textSize = 26 * cnv.scaleFactor;
         this.start.draw();
 
+        // Go to choose a character
         if (this.start.mouse.pressing()) {
             clearWorld();
             currScene = new ChooseCharacter();
@@ -75,6 +85,7 @@ class MainMenu {
         this.manual.textSize = 20 * cnv.scaleFactor;
         this.manual.draw();
 
+        // Show manual
         if (this.manual.mouse.pressing()) {
             this.#state = 'manual';
         }
@@ -83,9 +94,11 @@ class MainMenu {
     drawManual() {
         background(manualImg);
 
+        // Show back button
         this.back.opacity = 1;
         this.back.collider = 'static';
 
+        // Hide main menu buttons
         this.start.opacity = 0;
         this.start.collider = 'none';
         this.manual.opacity = 0;
@@ -98,6 +111,7 @@ class MainMenu {
         this.back.textSize = 26 * cnv.scaleFactor;
         this.back.draw();
 
+        // Return to main menu
         if (this.back.mouse.pressing()) {
             this.#state = 'main';
         }

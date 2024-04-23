@@ -57,6 +57,7 @@ class RenLevel {
                     player.sprite.vel.x = 0;
                     player.sprite.vel.y = 1.5;
                     playerInfo.energy = player.energy;
+                    clearEnemies();
                     bgm.stop();
                     if (!winBGM.isPlaying()) {
                         winBGM.play();

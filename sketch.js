@@ -49,7 +49,8 @@ function preload() {
 
     // Load sfx
     deathSFX = loadSound('./assets/music/videogame-death-sound');
-    fireSFX = loadSound('./assets/music/fireball')
+    fireSFX = loadSound('./assets/music/fireball');
+    fireSFX.setVolume(0.35);
     hurtSFX = loadSound('./assets/music/oof');
     hurtSFX.setVolume(0.25);
     jumpSFX = loadSound('./assets/music/cartoon-jump');
@@ -169,8 +170,22 @@ function clearWorld() {
     energy = [];
 }
 
+// Delete all enemies
+function clearEnemies() {
+    for (let arr of Object.values(enemies)) {
+        arr.forEach(enemy => {
+            enemy.hpBar.remove();
+            enemy.sprite.remove();
+        });
+    }
+    enemies = {};
+}
+
+// Activate when the player dies
 function playerDeath() {
     bgm.stop();
+
+    clearEnemies();
 
     // Play player death animation
     player.die();

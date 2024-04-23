@@ -1,7 +1,6 @@
 // Base character class
 
 class Character {
-// https://javascript.info/private-protected-properties-methods#protecting-wateramount
     // The maximum speed the character moves at
     _velocity;
 

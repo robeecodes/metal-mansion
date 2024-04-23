@@ -39,9 +39,9 @@ class BossLevel {
 
         this.drawCamera();
 
+        managePlayer();
 
         if (player.health.isAlive() && !this.#levelComplete) {
-            managePlayer();
             manageEnemies();
             manageProjectiles();
             this.spawnMinions();
@@ -50,13 +50,13 @@ class BossLevel {
                 player.sprite.vel.x = 0;
                 player.sprite.vel.y = 1.5;
                 bgm.stop();
+                clearEnemies();
                 if (!winBGM.isPlaying()) {
                     winBGM.play();
                 }
                 if (!this.#levelComplete) {
                     this.#levelComplete = setTimeout(() => {
                         teleportSFX.play();
-                        enemies = {};
                         playerInfo = {};
                         clearWorld();
                         currScene = new MainMenu();
