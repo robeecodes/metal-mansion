@@ -151,7 +151,7 @@ function draw() {
 }
 
 function windowResized() {
-// Change screen size if window size changes
+// Change screen size if window size changes after p5.play splash
     if (cnv) {
         cnv.buildGameCanvas();
         camera.zoom = cnv.scaleFactor;
@@ -224,53 +224,71 @@ function buildAnimationAtlas() {
     // Create all the animations needed from sprite sheets
     return {
         kaori: {
-            idle: loadAnimation('./assets/sprites/kaori/kaori-idle.png', { frameSize: [64, 64], frames: 4 }),
-            idleShoot: loadAnimation('./assets/sprites/kaori/kaori-idle-shoot.png', { frameSize: [64, 64], frames: 2 }),
-            run: loadAnimation('./assets/sprites/kaori/kaori-run.png', { frameSize: [64, 64], frames: 2 }),
-            runShoot: loadAnimation('./assets/sprites/kaori/kaori-run-shoot.png', { frameSize: [64, 64], frames: 2 }),
-            jump: loadAnimation('./assets/sprites/kaori/kaori-jump.png', { frameSize: [64, 64], frames: 2 }),
-            jumpShoot: loadAnimation('./assets/sprites/kaori/kaori-jump-shoot.png', { frameSize: [64, 64], frames: 2 }),
-            die: loadAnimation('./assets/sprites/kaori/kaori-death.png', { frameSize: [64, 64], frames: 2 }),
-            superIdle: loadAnimation('./assets/sprites/kaori/kaori-special-idle.png', { frameSize: [64, 64], frames: 4 }),
-            superIdleShoot: loadAnimation('./assets/sprites/kaori/kaori-special-idle-shoot.png', { frameSize: [64, 64], frames: 2 }),
-            superRun: loadAnimation('./assets/sprites/kaori/kaori-special-run.png', { frameSize: [64, 64], frames: 2 }),
-            superRunShoot: loadAnimation('./assets/sprites/kaori/kaori-special-run-shoot.png', { frameSize: [64, 64], frames: 2 }),
-            superJump: loadAnimation('./assets/sprites/kaori/kaori-special-jump.png', { frameSize: [64, 64], frames: 2 }),
-            superJumpShoot: loadAnimation('./assets/sprites/kaori/kaori-special-jump-shoot.png', { frameSize: [64, 64], frames: 2 }),
+            idle: loadAnimation('./assets/sprites/kaori/kaori-idle.png', {frameSize: [64, 64], frames: 4}),
+            idleShoot: loadAnimation('./assets/sprites/kaori/kaori-idle-shoot.png', {frameSize: [64, 64], frames: 2}),
+            run: loadAnimation('./assets/sprites/kaori/kaori-run.png', {frameSize: [64, 64], frames: 2}),
+            runShoot: loadAnimation('./assets/sprites/kaori/kaori-run-shoot.png', {frameSize: [64, 64], frames: 2}),
+            jump: loadAnimation('./assets/sprites/kaori/kaori-jump.png', {frameSize: [64, 64], frames: 2}),
+            jumpShoot: loadAnimation('./assets/sprites/kaori/kaori-jump-shoot.png', {frameSize: [64, 64], frames: 2}),
+            die: loadAnimation('./assets/sprites/kaori/kaori-death.png', {frameSize: [64, 64], frames: 2}),
+            superIdle: loadAnimation('./assets/sprites/kaori/kaori-special-idle.png', {frameSize: [64, 64], frames: 4}),
+            superIdleShoot: loadAnimation('./assets/sprites/kaori/kaori-special-idle-shoot.png', {
+                frameSize: [64, 64],
+                frames: 2
+            }),
+            superRun: loadAnimation('./assets/sprites/kaori/kaori-special-run.png', {frameSize: [64, 64], frames: 2}),
+            superRunShoot: loadAnimation('./assets/sprites/kaori/kaori-special-run-shoot.png', {
+                frameSize: [64, 64],
+                frames: 2
+            }),
+            superJump: loadAnimation('./assets/sprites/kaori/kaori-special-jump.png', {frameSize: [64, 64], frames: 2}),
+            superJumpShoot: loadAnimation('./assets/sprites/kaori/kaori-special-jump-shoot.png', {
+                frameSize: [64, 64],
+                frames: 2
+            }),
         },
         ren: {
-            idle: loadAnimation('./assets/sprites/ren/ren-idle.png', { frameSize: [64, 64], frames: 4 }),
-            idleShoot: loadAnimation('./assets/sprites/ren/ren-idle-shoot.png', { frameSize: [64, 64], frames: 2 }),
-            run: loadAnimation('./assets/sprites/ren/ren-run.png', { frameSize: [64, 64], frames: 2 }),
-            runShoot: loadAnimation('./assets/sprites/ren/ren-run-shoot.png', { frameSize: [64, 64], frames: 2 }),
-            jump: loadAnimation('./assets/sprites/ren/ren-jump.png', { frameSize: [64, 64], frames: 2 }),
-            jumpShoot: loadAnimation('./assets/sprites/ren/ren-jump-shoot.png', { frameSize: [64, 64], frames: 2 }),
-            die: loadAnimation('./assets/sprites/ren/ren-death.png', { frameSize: [64, 64], frames: 2 }),
-            superIdle: loadAnimation('./assets/sprites/ren/ren-special-idle.png', { frameSize: [64, 64], frames: 4 }),
-            superIdleShoot: loadAnimation('./assets/sprites/ren/ren-special-idle-shoot.png', { frameSize: [64, 64], frames: 2 }),
-            superRun: loadAnimation('./assets/sprites/ren/ren-special-run.png', { frameSize: [64, 64], frames: 2 }),
-            superRunShoot: loadAnimation('./assets/sprites/ren/ren-special-run-shoot.png', { frameSize: [64, 64], frames: 2 }),
-            superJump: loadAnimation('./assets/sprites/ren/ren-special-jump.png', { frameSize: [64, 64], frames: 2 }),
-            superJumpShoot: loadAnimation('./assets/sprites/ren/ren-special-jump-shoot.png', { frameSize: [64, 64], frames: 2 }),
+            idle: loadAnimation('./assets/sprites/ren/ren-idle.png', {frameSize: [64, 64], frames: 4}),
+            idleShoot: loadAnimation('./assets/sprites/ren/ren-idle-shoot.png', {frameSize: [64, 64], frames: 2}),
+            run: loadAnimation('./assets/sprites/ren/ren-run.png', {frameSize: [64, 64], frames: 2}),
+            runShoot: loadAnimation('./assets/sprites/ren/ren-run-shoot.png', {frameSize: [64, 64], frames: 2}),
+            jump: loadAnimation('./assets/sprites/ren/ren-jump.png', {frameSize: [64, 64], frames: 2}),
+            jumpShoot: loadAnimation('./assets/sprites/ren/ren-jump-shoot.png', {frameSize: [64, 64], frames: 2}),
+            die: loadAnimation('./assets/sprites/ren/ren-death.png', {frameSize: [64, 64], frames: 2}),
+            superIdle: loadAnimation('./assets/sprites/ren/ren-special-idle.png', {frameSize: [64, 64], frames: 4}),
+            superIdleShoot: loadAnimation('./assets/sprites/ren/ren-special-idle-shoot.png', {
+                frameSize: [64, 64],
+                frames: 2
+            }),
+            superRun: loadAnimation('./assets/sprites/ren/ren-special-run.png', {frameSize: [64, 64], frames: 2}),
+            superRunShoot: loadAnimation('./assets/sprites/ren/ren-special-run-shoot.png', {
+                frameSize: [64, 64],
+                frames: 2
+            }),
+            superJump: loadAnimation('./assets/sprites/ren/ren-special-jump.png', {frameSize: [64, 64], frames: 2}),
+            superJumpShoot: loadAnimation('./assets/sprites/ren/ren-special-jump-shoot.png', {
+                frameSize: [64, 64],
+                frames: 2
+            }),
         },
         UFO: {
-            idle: loadAnimation('./assets/sprites/enemies/ufo.png', {frameSize: [64, 64], frames: 6 })
+            idle: loadAnimation('./assets/sprites/enemies/ufo.png', {frameSize: [64, 64], frames: 6})
         },
         missile: {
-            idle: loadAnimation('./assets/sprites/enemies/missile.png', {frameSize: [64, 64], frames: 6 })
+            idle: loadAnimation('./assets/sprites/enemies/missile.png', {frameSize: [64, 64], frames: 6})
         },
         tank: {
-            idle: loadAnimation('./assets/sprites/enemies/tank.png', {frameSize: [64, 64], frames: 2 })
+            idle: loadAnimation('./assets/sprites/enemies/tank.png', {frameSize: [64, 64], frames: 2})
         },
         cannon: {
-            idle: loadAnimation('./assets/sprites/enemies/cannon.png', {frameSize: [64, 64], frames: 1 }),
-            shoot: loadAnimation('./assets/sprites/enemies/cannon-shoot.png', {frameSize: [64, 64], frames: 1 })
+            idle: loadAnimation('./assets/sprites/enemies/cannon.png', {frameSize: [64, 64], frames: 1}),
+            shoot: loadAnimation('./assets/sprites/enemies/cannon-shoot.png', {frameSize: [64, 64], frames: 1})
         },
         exitDoor: {
-            idle: loadAnimation('./assets/maps/tilesheets/exit-door.png', {frameSize: [128, 128], frames: 1 })
+            idle: loadAnimation('./assets/maps/tilesheets/exit-door.png', {frameSize: [128, 128], frames: 1})
         },
         energy: {
-            idle: loadAnimation('./assets/sprites/energy.png', {frameSize: [64, 64], frames: 1} )
+            idle: loadAnimation('./assets/sprites/energy.png', {frameSize: [64, 64], frames: 1})
         }
     };
 }
