@@ -42,13 +42,6 @@ class MainMenu {
                 break;
         }
 
-        // Pointer cursor on button hover
-        if (this.buttons.mouse.hovering()) {
-            mouse.cursor = 'pointer';
-        } else {
-            mouse.cursor = 'default';
-        }
-
     }
 
     drawMainButtons() {
@@ -57,6 +50,13 @@ class MainMenu {
         // Hide back button
         this.back.opacity = 0;
         this.back.collider = 'none';
+
+        // Pointer cursor on button hover
+        if (this.start.mouse.hovering() || this.manual.mouse.hovering()) {
+            mouse.cursor = 'pointer';
+        } else {
+            mouse.cursor = 'default';
+        }
 
 
         // Show start and manual buttons
@@ -97,6 +97,13 @@ class MainMenu {
         // Show back button
         this.back.opacity = 1;
         this.back.collider = 'static';
+
+        // Pointer cursor on button hover
+        if (this.back.mouse.hovering()) {
+            mouse.cursor = 'pointer';
+        } else {
+            mouse.cursor = 'default';
+        }
 
         // Hide main menu buttons
         this.start.opacity = 0;
