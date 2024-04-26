@@ -4,6 +4,7 @@ class UFO extends Enemy {
     constructor(x, y, health, scale) {
         super(x, y, health, scale);
 
+        // Add UFO animation
         this.sprite.addAnimation('idle', animationAtlas.UFO.idle);
 
         this.sprite.anis.frameDelay = 8;
@@ -11,16 +12,22 @@ class UFO extends Enemy {
 
         this.sprite.anis.offset.y = -10;
 
+        // UFO diameter
         this.sprite.diameter = 52 * scale;
 
+        // UFO max and min velocity
         this._velocity = {
             max: 3,
             min: -3
         }
+
+        // UFO acceleration
         this._acceleration = 0.15;
 
+        // UFO power
         this._power = 2;
 
+        // UFO health component
         this._health = new Health(health, health, 10);
     }
 

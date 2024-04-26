@@ -6,6 +6,7 @@ class RenLevel {
     constructor() {
         player = new Ren(tileSize, 28 * tileSize);
 
+        // Update player info
         playerInfo = {
             name: 'Ren',
             energy: 0
@@ -18,10 +19,14 @@ class RenLevel {
 
         energy = [];
 
+        // Create enemies
         this.createEnemies();
 
+        // Create map
         this.createMap();
 
+
+        // Add exit door
         this.exit = new Sprite(23.5 * tileSize, 6.5 * tileSize, 'n');
         this.exit.addAnimation('idle', animationAtlas.exitDoor.idle);
         this.exit.layer = 1;
@@ -29,8 +34,12 @@ class RenLevel {
         // HurtSFX pitch raised
         hurtSFX.rate(1.35);
 
+
+        // Set bgm
         bgm = levelBGM;
 
+
+        // Play bgm
         bgm.loop();
     }
 
@@ -42,26 +51,20 @@ class RenLevel {
         this.drawCamera();
 
         if (player.health.isAlive()) {
-            // Draws the player
-            managePlayer();
-
             if (!this.#levelComplete) {
+                // Draws the player
+                managePlayer();
+
                 // Draws the enemies
                 manageEnemies();
 
+                // Draws the projectiles
                 manageProjectiles();
-
 
                 // Beat the level
                 if (customOverlap(player.sprite, this.exit)) {
-                    player.sprite.vel.x = 0;
-                    player.sprite.vel.y = 1.5;
+                    levelWin();
                     playerInfo.energy = player.energy;
-                    clearEnemies();
-                    bgm.stop();
-                    if (!winBGM.isPlaying()) {
-                        winBGM.play();
-                    }
                     if (!this.#levelComplete) {
                         this.#levelComplete = setTimeout(() => {
                             teleportSFX.play();
@@ -77,6 +80,7 @@ class RenLevel {
         }
     }
 
+    // Add enemies
     createEnemies() {
         enemies.basicEnemies.push(new UFO(8 * tileSize, 28 * tileSize, 100, 0.75));
         enemies.basicEnemies.push(new UFO(15 * tileSize, 28 * tileSize, 100, 0.75));

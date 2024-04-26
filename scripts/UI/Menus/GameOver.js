@@ -17,7 +17,7 @@ class GameOver {
     draw() {
         background('black');
 
-        // Draw game game over to screen
+        // Draw game over to screen
         fill('palegreen');
         textAlign('center', 'center');
         textFont(arcadeFont, 48 * cnv.scaleFactor);

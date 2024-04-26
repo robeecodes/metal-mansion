@@ -9,6 +9,7 @@ class Cannon extends Enemy {
         // String dictating which enemy to spawn
         this.spawnType = spawnType;
 
+        // Add animations to cannon
         this.sprite.addAnimation('idle', animationAtlas.cannon.idle);
         this.sprite.addAnimation('shoot', animationAtlas.cannon.shoot);
 
@@ -23,9 +24,11 @@ class Cannon extends Enemy {
         this.sprite.collider = 'static';
         this.sprite.overlaps(allSprites);
 
+        // Set sprite dimensions
         this.sprite.width = 52 * scale;
         this.sprite.height = 32 * scale;
 
+        // Create health component
         this._health = new Health(health, health, 5);
 
         // Check if cannon is currently spawning enemy
@@ -38,12 +41,16 @@ class Cannon extends Enemy {
 
     // Spawn enemy based on spawnType
     spawnEnemy() {
-        this.sprite.changeAni(['idle', 'shoot']);
+        // Play shoot animation
+        this.sprite.changeAni(['shoot', 'idle']);
         switch (this.spawnType) {
+            // Spawn UFO
             case "ufo":
                 return new UFO(this.sprite.x + this.sprite.hw, this.sprite.y, 100, .75);
+            // Spawn Missile
             case "missile":
                 return new Missile(this.sprite.x, this.sprite.y, 100, .75);
+            // Spawn Tank
             case "tank":
                 return new Tank(this.sprite.x, this.sprite.y, 100, .75);
         }

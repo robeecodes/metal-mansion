@@ -10,6 +10,8 @@ class Health {
     // How much damage the character receives (e.g. a character hit by a character with a power of 3 and a damage multiplier of 5 receives 15 damage)
     #damageMultiplier;
 
+
+    // Initialise the Health component
     constructor(initialHealth, maxHealth, damageMultiplier) {
         this.#currentHealth = initialHealth;
         this.#maxHealth = maxHealth;

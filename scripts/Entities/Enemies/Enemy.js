@@ -8,6 +8,7 @@ class Enemy extends Character {
             throw new Error("Abstract classes cannot be instantiated");
         }
 
+        // Scale the sprite
         this.sprite.scale = scale;
 
         // All enemies overlap the player

@@ -36,14 +36,19 @@ class Ren extends Player {
 
         this.sprite.changeAni('idle');
 
+        // Ren max and min velocity
         this._velocity = {
             max: 3.5,
             min: -3.5
         }
+
+        // Ren acceleration
         this._acceleration = 0.2;
 
+        // Ren power
         this._power = 3;
 
+        // Ren health component
         this._health = new Health(100, 100, 1.5);
     }
 
@@ -52,6 +57,7 @@ class Ren extends Player {
         if (mouse.presses() || kb.presses('e') || kb.presses('f')) {
             fireSFX.play();
 
+            // Direction to shoot the fireball
             let direction = this.sprite.mirror.x ? -1 : 1;
 
             new Fireball(this.sprite.x + (this.sprite.hw * direction), this.sprite.y, direction, this._power, "player", 1);

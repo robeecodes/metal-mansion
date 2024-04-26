@@ -32,15 +32,15 @@ class Player extends Character {
 
     // Call all the animations from this function in draw
     animations() {
-            this.movementAnimations();
-            this.shootAnimations();
+        this.movementAnimations();
+        this.shootAnimations();
     }
 
     //
     actions() {
-            this.movementActions();
-            this.shootActions();
-            this.pickupEnergy();
+        this.movementActions();
+        this.shootActions();
+        this.pickupEnergy();
     }
 
     die() {
@@ -49,7 +49,8 @@ class Player extends Character {
 
     movementAnimations() {
         // Animations for player movement - detect when running, jumping and shooting
-        if (this.sprite.ani.name !== 'idleShoot' && this.sprite.ani.name !== 'runShoot' && this.sprite.ani.name !== 'jumpShoot' && this.sprite.ani.name !== 'superIdleShoot' && this.sprite.ani.name !== 'superRunShoot' && this.sprite.ani.name !== 'superJumpShoot' ) {
+        if (this.sprite.ani.name !== 'idleShoot' && this.sprite.ani.name !== 'runShoot' && this.sprite.ani.name !== 'jumpShoot' && this.sprite.ani.name !== 'superIdleShoot' && this.sprite.ani.name !== 'superRunShoot' && this.sprite.ani.name !== 'superJumpShoot') {
+            // Move left
             if (kb.pressing('left') && this.jumpState === this.#JUMP_STATE.GROUNDED) {
                 if (this._superPowered) {
                     this.sprite.changeAni('superRun');
@@ -60,6 +61,7 @@ class Player extends Character {
                 if (!stepSFX.isPlaying()) {
                     stepSFX.play();
                 }
+                // Move right
             } else if (kb.pressing('right') && this.jumpState === this.#JUMP_STATE.GROUNDED) {
                 if (this._superPowered) {
                     this.sprite.changeAni('superRun');
@@ -70,6 +72,7 @@ class Player extends Character {
                 if (!stepSFX.isPlaying()) {
                     stepSFX.play();
                 }
+                // Idle aniamtions
             } else if (this.jumpState === this.#JUMP_STATE.GROUNDED) {
                 if (this._superPowered) {
                     this.sprite.changeAni('superIdle');
@@ -78,6 +81,7 @@ class Player extends Character {
                 }
             }
 
+            // Jump animations
             if (kb.presses(' ')) {
                 if (this.jumpState !== this.#JUMP_STATE.DOUBLE_JUMP) {
                     if (this._superPowered) {
@@ -100,6 +104,7 @@ class Player extends Character {
             this.sprite.vel.x = 0;
         }
 
+        // Jump
         if (kb.presses(' ')) {
             if (this.jumpState !== this.#JUMP_STATE.DOUBLE_JUMP) {
                 this.sprite.vel.y = -4.5;
@@ -191,6 +196,7 @@ class Player extends Character {
         ice.forEach(i => {
             if (customOverlap(this.sprite, i)) {
                 this.sprite.friction = 0;
+                // Direction to push player
                 let direction = this.sprite.mirror.x ? -1 : 1;
 
                 if (direction === -1) {
@@ -201,6 +207,7 @@ class Player extends Character {
 
                 this.sprite.applyForce(20);
 
+                // Get injured if not invincible
                 if (!this.invincible) {
                     hurtSFX.play();
                     this.health.takeDamage(6);
@@ -236,10 +243,10 @@ class Player extends Character {
         this.invincible = true;
         // Visually indicate invincibility
         this.sprite.opacity = 0.5;
-            setTimeout(() => {
-                this.invincible = false;
-                this.sprite.opacity = 1;
-            }, 1500);
+        setTimeout(() => {
+            this.invincible = false;
+            this.sprite.opacity = 1;
+        }, 1500);
     }
 
     becomeSuper() {

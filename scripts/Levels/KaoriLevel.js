@@ -6,6 +6,7 @@ class KaoriLevel {
     // Check if player has beaten all enemies in the danger area with the conveyors
     #clearedDangerRoom;
 
+    // Check if level is complete
     #levelComplete;
 
     constructor() {
@@ -25,6 +26,7 @@ class KaoriLevel {
             conveyorCannons: []
         }
 
+        // Store all energy pills
         energy = [];
 
         this.createEnemies();
@@ -53,16 +55,19 @@ class KaoriLevel {
 
         this.drawCamera();
 
+        // Play game while player is alive
         if (player.health.isAlive()) {
-            // Draws the player
-            managePlayer();
-
             if (!this.#levelComplete) {
+                // Draws the player
+                managePlayer();
+
+                // Spawn enemies on the conveyor
                 this.conveyorSpawns();
 
                 // Draws the enemies
                 manageEnemies();
 
+                // Draws projectiles
                 manageProjectiles();
 
                 // If all trap enemies are gone, teleport out of the trap
@@ -84,14 +89,11 @@ class KaoriLevel {
 
                 // Beat the level
                 if (customOverlap(player.sprite, this.exit)) {
-                    player.sprite.vel.x = 0;
-                    player.sprite.vel.y = 1.5;
+                    levelWin();
+                    // Add player's current energy to playerInfo
                     playerInfo.energy = player.energy;
-                    clearEnemies();
-                    bgm.stop();
-                    if (!winBGM.isPlaying()) {
-                        winBGM.play();
-                    }
+
+                    // Go to boss after 7 seconds
                     if (!this.#levelComplete) {
                         this.#levelComplete = setTimeout(() => {
                             teleportSFX.play();
@@ -107,6 +109,8 @@ class KaoriLevel {
         }
     }
 
+
+    // Push enemies to relevant enemy group
     createEnemies() {
         enemies.basicEnemies.push(new UFO(14 * tileSize, 5 * tileSize, 100, 0.75));
         enemies.basicEnemies.push(new UFO(28 * tileSize, 5 * tileSize, 100, 0.75));
@@ -116,10 +120,12 @@ class KaoriLevel {
         enemies.basicEnemies.push(new Missile(39 * tileSize, 3 * tileSize, 100, 0.75));
         enemies.basicEnemies.push(new Missile(14 * tileSize, 14 * tileSize, 100, 0.75));
 
+        // Destroying these enemies lets you leave the trap
         enemies.trapEnemies.push(new Missile(35 * tileSize, 25 * tileSize, 250, 0.75));
         enemies.trapEnemies.push(new Missile(43 * tileSize, 25 * tileSize, 250, 0.75));
         enemies.trapEnemies.push(new Tank(39 * tileSize, 27 * tileSize, 250, 2));
 
+        // Destroying these enemies lets you exit the conveyor room
         enemies.conveyorUFOs.push(new UFO(3 * tileSize, 25 * tileSize, 100, 0.75));
         enemies.conveyorMissiles.push(new Missile(1 * tileSize, 23 * tileSize, 100, 0.75));
         enemies.conveyorCannons.push(new Cannon(9 * tileSize, 26 * tileSize, 100, 0.75, -90, "missile"));
@@ -217,6 +223,7 @@ class KaoriLevel {
 
     // Spawn enemies from the cannons on the conveyor belts based on type
     conveyorSpawns() {
+        // Spawn UFOs
         if (enemies.conveyorUFOs.length < 1) {
             enemies.conveyorCannons.forEach(cannon => {
                 if (!cannon.spawning && cannon.spawnType === "ufo") {
@@ -229,6 +236,7 @@ class KaoriLevel {
             });
         }
 
+        // Spawn Missiles
         if (enemies.conveyorMissiles.length < 1) {
             enemies.conveyorCannons.forEach(cannon => {
                 if (!cannon.spawning && cannon.spawnType === "missile") {

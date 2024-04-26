@@ -7,27 +7,36 @@ class Tank extends Enemy {
     constructor(x, y, health, scale) {
         super(x, y, health, scale);
 
+        // Add tank animations
         this.sprite.addAnimation('idle', animationAtlas.tank.idle);
 
         this.sprite.anis.frameDelay = 8;
         this.sprite.changeAni('idle');
 
+        // Set collision for tank
         this.sprite.overlaps(allSprites);
         this.sprite.collides(wall);
         this.sprite.collides(ground);
 
+        // Set diameter of sprite
         this.sprite.diameter = 40 * scale;
 
+        // Set where sprite is drawn
         this.sprite.anis.offset.y = -10;
 
+        // Set maximum and minimum velocity of tank
         this._velocity = {
             max: 2,
             min: -2
         }
+
+        // Set acceleration of tank
         this._acceleration = 0.15;
 
+        // Set power of tank
         this._power = 4;
 
+        // Create health component for tank
         this._health = new Health(health, health, 3);
     }
 

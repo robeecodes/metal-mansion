@@ -65,8 +65,10 @@ class Character {
     platformCollision() {
         // Allows character to jump through platforms when underneath them
         platforms.forEach(platform => {
+            // If sprite's feet are below a platform, go through it
             if (this.sprite.y + this.sprite.hh > platform.y) {
                 this.sprite.overlaps(platform);
+                // Otherwise, collide with it
             } else {
                 // If player is above platform, player lands on platform
                 this.sprite.collides(platform);

@@ -8,9 +8,11 @@ class Missile extends Enemy {
     constructor(x, y, health, scale) {
         super(x, y, health, scale);
 
+        // Store initial x and y values
         this.#initX = x;
         this.#initY = y;
 
+        // Add animation to missile
         this.sprite.addAnimation('idle', animationAtlas.missile.idle);
 
         this.sprite.changeAni('idle');
@@ -20,16 +22,22 @@ class Missile extends Enemy {
         this.sprite.collider = 'kinematic';
         this.sprite.overlaps(allSprites);
 
+        // Set diameter of sprite
         this.sprite.diameter = 40 * scale;
 
+        // Set maximum and minimum velocity of missile
         this._velocity = {
             max: 3,
             min: -3
         }
+
+        // Set acceleration for missile
         this._acceleration = 0.5;
 
+        // Set power for missile
         this._power = 4;
 
+        // Create health component for missile
         this._health = new Health(health, health, 5);
     }
 

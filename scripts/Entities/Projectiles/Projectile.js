@@ -49,6 +49,7 @@ class Projectile {
             this.sprite.remove();
         }
 
+        // Fireball projectiles can melt ice
         if (this instanceof Fireball) {
             ice.forEach(i => {
                 if (this.sprite.overlaps(i)) {
@@ -57,6 +58,7 @@ class Projectile {
             })
         }
 
+        // Filter projectiles array to remove inactive ones
         if (this.sprite.removed) {
             Projectile.projectiles = Projectile.projectiles.filter((projectile) => projectile !== this);
         }

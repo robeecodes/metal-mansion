@@ -34,14 +34,19 @@ class Kaori extends Player {
 
         this.sprite.changeAni('idle');
 
+        // Kaori max and min velocity
         this._velocity = {
             max: 5,
             min: -5
         }
+
+        // Kaori acceleration
         this._acceleration = 0.25;
 
+        // Kaori power
         this._power = 5;
 
+        // Kaori health component
         this._health = new Health(100, 100, 3);
     }
 
@@ -50,6 +55,7 @@ class Kaori extends Player {
         if (mouse.presses() || kb.presses('e') || kb.presses('f')) {
             shootSFX.play();
 
+            // Determine direction of bullets
             let direction = this.sprite.mirror.x ? -1 : 1;
 
             new Bullet(this.sprite.x + (this.sprite.hw * direction), this.sprite.y, direction, this._power, "player", 1);

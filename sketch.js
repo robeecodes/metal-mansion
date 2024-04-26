@@ -173,12 +173,30 @@ function clearWorld() {
 // Delete all enemies
 function clearEnemies() {
     for (let arr of Object.values(enemies)) {
-        arr.forEach(enemy => {
+        arr.forEach((enemy, i) => {
             enemy.hpBar.remove();
             enemy.sprite.remove();
         });
     }
     enemies = {};
+}
+
+// Activate when you win a level
+function levelWin() {
+    // Set player animation
+    player.sprite.changeAni('idle');
+    // Make player invincible
+    player.invincible = true;
+    // Remove player hp bar
+    player.hpBar.remove();
+    // Stop bgm
+    bgm.stop();
+    // Remove remaining enemies
+    clearEnemies();
+    // Play winBGM
+    if (!winBGM.isPlaying()) {
+        winBGM.play();
+    }
 }
 
 // Activate when the player dies
@@ -192,6 +210,7 @@ function playerDeath() {
 
     prevScene = currScene;
 
+    // After 2 seconds, remove all sprites and show game over screen
     if (!gameOverTimeout) {
         deathSFX.play();
         gameOverTimeout = setTimeout(() => {
@@ -221,6 +240,7 @@ function manageEnemies() {
     }
 }
 
+// Run all player scripts
 function managePlayer() {
     player.animations();
     player.actions();
